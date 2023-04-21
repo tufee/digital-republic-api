@@ -1,14 +1,16 @@
 import * as dotenv from 'dotenv'
-import express, { Request, Response } from 'express'
+import express from 'express'
+import { pinturaRouter } from './api/rest/pintura-routes'
 import logger from './helper/logger'
 dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 3000
 
-app.get('/', (_request: Request, response: Response) => {
-  response.send('hello world')
-})
+app.use(express.json())
+app.use(pinturaRouter)
 
 app.listen(port, () => { logger.info(`Server started on port ${port}`) })
+
+export { app }
 
