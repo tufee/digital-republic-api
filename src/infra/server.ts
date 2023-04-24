@@ -10,7 +10,9 @@ const port = process.env.PORT || 3000
 app.use(express.json())
 app.use(pinturaRouter)
 
-app.listen(port, () => { logger.info(`Server started on port ${port}`) })
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => { logger.info(`Server started on port ${port}`) })
+}
 
 export { app }
 
