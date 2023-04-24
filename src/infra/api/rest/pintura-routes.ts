@@ -1,12 +1,14 @@
 import express, { Request, Response } from 'express'
+import { CalculaQuantidadeTintaUseCase } from '../../../domain/usecases/calculaQuantidadeTinta-usecase'
 import { PinturaController } from './pintura-controller'
 
 const pinturaRouter = express.Router()
 
-const pinturaController = new PinturaController()
+const calculaQuantidadeTintaUseCase = new CalculaQuantidadeTintaUseCase()
+const pinturaController = new PinturaController(calculaQuantidadeTintaUseCase)
 
-pinturaRouter.get('/calculaQuantidadeTinta', (request: Request, response: Response) =>
-  pinturaController.calculaQuantidadeTinta(request, response)
+pinturaRouter.post('/calculaQuantidadeTinta', (request: Request, response: Response) =>
+  pinturaController.calculaTinta(request, response)
 )
 
 export { pinturaRouter }
