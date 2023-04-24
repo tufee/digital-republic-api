@@ -8,7 +8,7 @@ export class PinturaController {
   calculaTinta(request: Request, response: Response): Response {
     try {
       if (!Array.isArray(request.body) || request.body.length !== 4) {
-        return response.status(400).json({ error: 'Invalid request body' })
+        return response.status(400).json({ error: 'Corpo da requisição inválido' })
       }
 
       const quantidaTinta = this.calculaQuantidadeTinta.calculaQuantidade(request.body)
