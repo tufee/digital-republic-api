@@ -1,3 +1,4 @@
+import cors from 'cors'
 import * as dotenv from 'dotenv'
 import express from 'express'
 import swaggerJsDoc from 'swagger-jsdoc'
@@ -12,6 +13,7 @@ const port = process.env.PORT || 3000
 const specs = swaggerJsDoc(swaggerOptions)
 
 app.use(express.json())
+app.use(cors())
 app.use(pinturaRouter)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc, specs))
 
